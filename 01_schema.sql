@@ -3,6 +3,7 @@ CREATE DATABASE tifosi;
 USE tifosi;
 
 -- Ici, on est dans un un script pur : le mdp est visible. En condition de production, on utiliserait plutôt .env pour la sécurité.
+DROP USER IF EXISTS 'tifosi'@'localhost';
 CREATE USER 'tifosi'@'localhost' IDENTIFIED BY 'tifosi1234';
 GRANT ALL PRIVILEGES ON tifosi.* TO 'tifosi'@'localhost';
 FLUSH PRIVILEGES;
@@ -52,9 +53,7 @@ CREATE TABLE boisson (
 CREATE TABLE foccacia (
     id_foccacia INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL,
-    prix DECIMAL(5,2) NOT NULL,
-    id_menu INT NOT NULL,
-    FOREIGN KEY (id_menu) REFERENCES menu(id_menu)
+    prix DECIMAL(5,2) NOT NULL
 );
 
 CREATE TABLE client_achete_menu (
