@@ -46,7 +46,7 @@ VALUES (1, 'Coca-Cola zéro', 1),
        (11, 'Monster energy ultra blue', 3),
        (12, 'Eau de source', 4);
 
-INSERT INTO foccacia (id_foccacia, nom, prix)
+INSERT INTO focaccia (id_focaccia, nom, prix)
 VALUES (1, 'Mozaccia', 9.80),
        (2, 'Gorgonzollaccia', 10.80),
        (3, 'Raclaccia', 8.90),
@@ -56,7 +56,7 @@ VALUES (1, 'Mozaccia', 9.80),
        (7, 'Américaine', 10.80),
        (8, 'Paysanne', 12.80);
 
-INSERT INTO foccacia_comprend_ingredient (id_foccacia, id_ingredient, quantite)
+INSERT INTO focaccia_comprend_ingredient (id_focaccia, id_ingredient, quantite)
 VALUES (1, 5, 200),
        (1, 25, 50),
        (1, 9, 20),

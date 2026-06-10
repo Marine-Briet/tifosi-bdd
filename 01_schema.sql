@@ -9,10 +9,10 @@ GRANT ALL PRIVILEGES ON tifosi.* TO 'tifosi'@'localhost';
 FLUSH PRIVILEGES;
 
 -- Drop des tables si elles existent déjà (pour éviter les erreurs lors de la création)
-DROP TABLE IF EXISTS foccacia_comprend_ingredient;
+DROP TABLE IF EXISTS focaccia_comprend_ingredient;
 DROP TABLE IF EXISTS menu_contient_boisson;
 DROP TABLE IF EXISTS client_achete_menu;
-DROP TABLE IF EXISTS foccacia;
+DROP TABLE IF EXISTS focaccia;
 DROP TABLE IF EXISTS boisson;
 DROP TABLE IF EXISTS client;
 DROP TABLE IF EXISTS menu;
@@ -50,8 +50,8 @@ CREATE TABLE boisson (
     FOREIGN KEY (id_marque) REFERENCES marque(id_marque)
 );
 
-CREATE TABLE foccacia (
-    id_foccacia INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE focaccia (
+    id_focaccia INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL,
     prix DECIMAL(5,2) NOT NULL
 );
@@ -73,11 +73,11 @@ CREATE TABLE menu_contient_boisson (
     FOREIGN KEY (id_boisson) REFERENCES boisson(id_boisson)
 );
 
-CREATE TABLE foccacia_comprend_ingredient (
+CREATE TABLE focaccia_comprend_ingredient (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    id_foccacia INT NOT NULL,
+    id_focaccia INT NOT NULL,
     id_ingredient INT NOT NULL,
     quantite INT NOT NULL,
-    FOREIGN KEY (id_foccacia) REFERENCES foccacia(id_foccacia),
+    FOREIGN KEY (id_focaccia) REFERENCES focaccia(id_focaccia),
     FOREIGN KEY (id_ingredient) REFERENCES ingredient(id_ingredient)
 );
