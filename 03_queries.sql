@@ -26,7 +26,7 @@ SELECT AVG(prix) FROM focaccia;
 -- Résultat attendu : 12 boissons triées de A à Z avec leur marque associée
 -- Code : 
 SELECT boisson.nom, marque.nom 
-FROM BOISSON 
+FROM boisson 
 JOIN marque on boisson.id_marque = marque.id_marque 
 ORDER BY boisson.nom ASC;
 -- Résultat obtenu : 12 boissons triées de A à Z avec leur marque associée
