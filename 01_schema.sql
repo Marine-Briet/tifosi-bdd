@@ -37,11 +37,6 @@ CREATE TABLE client (
     code_postal INT NOT NULL
 );
 
-CREATE TABLE menu (
-    id_menu INT PRIMARY KEY AUTO_INCREMENT,
-    nom VARCHAR(50) NOT NULL,
-    prix DECIMAL(5,2) NOT NULL
-);
 
 CREATE TABLE boisson (
     id_boisson INT PRIMARY KEY AUTO_INCREMENT,
@@ -54,6 +49,14 @@ CREATE TABLE focaccia (
     id_focaccia INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL,
     prix DECIMAL(5,2) NOT NULL
+);
+
+CREATE TABLE menu (
+    id_menu INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(50) NOT NULL,
+    prix DECIMAL(5,2) NOT NULL,
+    id_focaccia INT NOT NULL,
+    FOREIGN KEY (id_focaccia) REFERENCES focaccia(id_focaccia)
 );
 
 CREATE TABLE client_achete_menu (

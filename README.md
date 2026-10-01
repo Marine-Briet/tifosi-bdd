@@ -35,69 +35,19 @@ The project covers the full database design workflow:
 
 The database contains **9 tables**:
 
-- **Main tables:** `focaccia`, `ingredient`, `boisson` (drink), `marque` (brand), `menu`, `client`
+- **Main tables:** `focaccia`, `ingredient`, `boisson` (drink), `marque` (brand), `menu` (linked to one focaccia), `client`
 - **Junction tables** (many-to-many relationships):
   - `focaccia_comprend_ingredient` — which ingredients a focaccia contains, with a `quantite` (quantity)
   - `menu_contient_boisson` — which drinks a menu includes
   - `client_achete_menu` — which menus a customer bought, with a `date_achat` (purchase date)
 
-```mermaid
-erDiagram
-    MARQUE ||--o{ BOISSON : "produces"
-    FOCACCIA ||--o{ FOCACCIA_COMPREND_INGREDIENT : "contains"
-    INGREDIENT ||--o{ FOCACCIA_COMPREND_INGREDIENT : "is used in"
-    MENU ||--o{ MENU_CONTIENT_BOISSON : "includes"
-    BOISSON ||--o{ MENU_CONTIENT_BOISSON : "is part of"
-    CLIENT ||--o{ CLIENT_ACHETE_MENU : "buys"
-    MENU ||--o{ CLIENT_ACHETE_MENU : "is bought in"
+### Conceptual data model (MCD)
 
-    FOCACCIA {
-        int id_focaccia PK
-        string nom
-        decimal prix
-    }
-    INGREDIENT {
-        int id_ingredient PK
-        string nom
-    }
-    FOCACCIA_COMPREND_INGREDIENT {
-        int id PK
-        int id_focaccia FK
-        int id_ingredient FK
-        int quantite
-    }
-    MARQUE {
-        int id_marque PK
-        string nom
-    }
-    BOISSON {
-        int id_boisson PK
-        string nom
-        int id_marque FK
-    }
-    MENU {
-        int id_menu PK
-        string nom
-        decimal prix
-    }
-    MENU_CONTIENT_BOISSON {
-        int id PK
-        int id_menu FK
-        int id_boisson FK
-    }
-    CLIENT {
-        int id_client PK
-        string nom
-        string email
-        int code_postal
-    }
-    CLIENT_ACHETE_MENU {
-        int id PK
-        int id_client FK
-        int id_menu FK
-        date date_achat
-    }
-```
+<p align="center">
+  <img src="docs/mcd.jpg" alt="Conceptual data model" width="600">
+</p>
+
+*Conceptual data model provided in the project brief, implemented in `01_schema.sql`. Each many-to-many association becomes a junction table, and each 1,1 cardinality becomes a foreign key (e.g. `boisson.id_marque`, `menu.id_focaccia`).*
 
 **Test data:** 8 focaccias, 25 ingredients, 12 drinks from 4 brands, and the composition of each focaccia. The `menu` and `client` tables are created and ready, without test data.
 
